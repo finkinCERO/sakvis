@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar songsWS/target/songsWS.jar --port $PORT songsWS/target/*.war
+web: java $JAVA_OPTS -jar songsWS/target/songsWS.jar

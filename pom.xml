@@ -12,8 +12,6 @@
 
     <!-- sub modules -->
     <modules>
-        <module>runmerunner</module>
-        <module>songsservlet</module>
         <module>songsWS</module>
     </modules>
     <!-- Inherit defaults from Spring Boot -->

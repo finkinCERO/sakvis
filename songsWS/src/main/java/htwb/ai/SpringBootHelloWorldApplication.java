@@ -60,10 +60,10 @@ public class SpringBootHelloWorldApplication implements CommandLineRunner {
             Users user2 = new Users(AppConstants.USER_2, AppConstants.DEFAULT_PASSWORD, "Elena", "Schuler");
             user2.setPassword(web.passwordEncoder().encode(user2.getPassword()));
             File resource = new File("src/main/resources/songs.json");
-            String path = resource.getAbsolutePath();
-            //String[] splitted = path.split("sakvis");
-            //if (!resource.getAbsolutePath().contains("songsWS")) path = splitted[0] + "sakvis/songsWS" + splitted[1];
-            List<Song> songs = readJSONToSongs(path);
+            String path = resource.getPath();
+            /*String[] splitted = path.split("sakvis");
+            if (!resource.getAbsolutePath().contains("songsWS")) path = splitted[0] + "sakvis/songsWS" + splitted[1];*/
+            List<Song> songs = readJSONToSongs("/app/"+path);
 
             List<SongList> sLists = new ArrayList<>();
 

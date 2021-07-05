@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import htwb.ai.model.Users;
 import htwb.ai.model.SongList;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface SongListRepo extends JpaRepository<SongList, Integer> {

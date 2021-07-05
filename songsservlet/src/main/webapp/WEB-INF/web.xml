@@ -1,0 +1,30 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>SongsServlet</servlet-name>
+        <servlet-class>htwb.ai.servlet.SongsServlet</servlet-class>
+
+        <init-param>
+            <param-name>uriToDB</param-name>
+            <param-value>jdbc:h2:~/songsDB</param-value>
+        </init-param>
+
+    </servlet>
+
+    <!--  DIE URL AN DAS SERVLET, WELCHES IN EINEM TOMCAT_SERVER LAEUFT IST:
+          http://localhost:8080/songsservlet/echo
+          EchoServlet ist die Bezeichnung der App,
+          songsservlet/echo -> Pfad welcher auf htwb.ai.teames.EchoServlet abgebildet wird
+          songsservlet.war wird von uns gebaut, ins webapp-Verzeichnis von Tomcat kopiert
+          von Tomcat depoyed
+
+     -->
+    <servlet-mapping>
+        <servlet-name>SongsServlet</servlet-name>
+        <url-pattern>/songs</url-pattern>
+    </servlet-mapping>
+
+</web-app>

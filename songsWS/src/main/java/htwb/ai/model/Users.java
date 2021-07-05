@@ -19,10 +19,10 @@ public class Users {
     @Id
     @Column(name = "username", length = 50, nullable = false)
     private String username;
-    @Column(length = 50, nullable = true)
+    @Column(length = 50, nullable = false)
     @JsonIgnore
     private String firstname;
-    @Column(length = 50, nullable = true)
+    @Column(length = 50, nullable = false)
     @JsonIgnore
     private String lastname;
     @Column(name = "password", length = 100, nullable = false)
@@ -31,7 +31,7 @@ public class Users {
     //    @OneToMany(targetEntity = SongList.class, cascade= CascadeType.ALL)
 //    @JoinColumn(name="owner", referencedColumnName="username")
     @JsonManagedReference
-    @OneToMany(mappedBy="owner", fetch=FetchType.LAZY, cascade=CascadeType.MERGE,//WAS EAGER
+    @OneToMany(mappedBy="owner", fetch=FetchType.EAGER, cascade=CascadeType.MERGE,//WAS EAGER
             orphanRemoval=true)
     private List<SongList> songLists = new ArrayList<>();
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="songsDB-PU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>htwb.ai.model.Song</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <!--  value="com.mysql.jdbc.Driver"/>-->
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:h2:~/songsDB"/>
+            <property name="javax.persistence.jdbc.user"
+                      value="sa"/>
+            <property name="javax.persistence.jdbc.password"
+                      value=""/>
+
+            <!-- Hibernate properties -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!-- value="org.hibernate.dialect.MySQLDialect"/> -->
+			<!--  force eclipseLink to create tables during deployment time -->
+			
+            <!-- The connection is released after each statement execution
+                 and reacquired prior to running the next statement.
+
+                 AFTER_TRANSACTION
+                    It releases the connection after org.hibernate.Transaction commit or rollback.
+                 AFTER_STATEMENT
+
+            -->
+            <property name="hibernate.connection.release_mode" value="after_statement"></property>
+            <property name="hibernate.connection.handling_mode"
+                      value="DELAYED_ACQUISITION_AND_RELEASE_AFTER_STATEMENT"></property>
+			
+            <!-- Connection pool properties -->
+            <property name="hibernate.c3p0.min_size" value="1"/>
+            <property name="hibernate.c3p0.max_size" value="8"/>
+
+            <!-- in seconds:  When an idle connection is removed from the pool
+                 Hibernate default: 0, never expire. -->
+            <property name="hibernate.c3p0.timeout" value="1800"/>
+
+            <!--  Number of prepared statements that will be cached.
+                  Hibernate default: 0 , caching is disable. -->
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+        </properties>
+
+
+    </persistence-unit>
+
+</persistence>

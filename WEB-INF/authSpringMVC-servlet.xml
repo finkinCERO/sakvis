@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--  explicit support for annotation-driven MVC controllers
+         e.g., @RequestMapping, @Controller -->
+    <mvc:annotation-driven />
+
+    <!-- enable auto scanning feature:
+         base-package: package, wo sich die Controller befinden.
+         Spring wird dieses Vezeichnis scannen und die Beans,
+         die, z.B., mit @RestController annotiert sind, finden und registrieren. -->
+    <context:component-scan base-package="htwb.ai" />
+
+    <!-- Es kann nur eine Implementierung von IUserDAO angegeben werden:-->
+    <!-- <bean id="userDAO" class="htwb.ai.repository.UserDAO"/> -->
+
+    <!--
+        <bean id="dbUserDAO" class="htwb.ai.repository.DBUserDAO">
+            <property name="persistenceUnit" value="PU-UserDB"></property>
+        </bean>
+     -->
+    <bean id="dbUserDAO" class="htwb.ai.repository.DBUserDAO" destroy-method="closeEMF">
+        <constructor-arg value="PU-SongDB"/>
+    </bean>
+
+    <bean id="dbSongDAO" class="htwb.ai.repository.DBSongDAO" destroy-method="closeEMF">
+        <constructor-arg value="PU-SongDB"/>
+    </bean>
+
+    <!-- Wir nutzen Jackson: -->
+    <bean id="jsonMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+
+    <!--
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="driverClassName" value="org.postgresql.Driver" />
+
+        <property name="url" value="jdbc:postgresql://ec2-63-34-97-163.eu-west-1.compute.amazonaws.com:5432/d2e07rfn1p16kj"/>
+        <property name="username" value="skwuvhlnkwbhjv"/>
+        <property name="password" value="83e878bd31a074843512b0acab4c5de9b158d3f85751776565e64cc472a8cfe2"/>
+    </bean> -->
+    <!--
+	<bean class="java.net.URI" id="dbUrl">
+	    <constructor-arg value="postgres://skwuvhlnkwbhjv:83e878bd31a074843512b0acab4c5de9b158d3f85751776565e64cc472a8cfe2@ec2-63-34-97-163.eu-west-1.compute.amazonaws.com:5432/d2e07rfn1p16kj"/>
+	</bean>
+ -->
+
+
+
+</beans>

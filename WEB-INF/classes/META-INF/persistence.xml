@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="PU-SongDB" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>htwb.ai.model.User</class>
+
+        <properties>
+
+           <!--  <property name="hibernate.connection.url" value="jdbc:postgresql://ec2-63-34-97-163.eu-west-1.compute.amazonaws.com:5432/d2e07rfn1p16kj"/> -->
+            <!--<property name="hibernate.connection.driver_class"
+                      value="org.postgresql.Driver"/>-->
+            <property name="hibernate.connection.url" value="jdbc:mysql://eu-cdbr-west-01.cleardb.com/heroku_0262800c7d96f44"/>
+                      
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.username"
+                      value="b6d58a62fcef9b"/>
+            <property name="hibernate.connection.password"
+                      value="280d69b6"/>
+            <!--<property name="hibernate.archive.autodetection"
+                      value="class"/>-->
+            <property name="hibernate.show_sql"
+                      value="true"/>
+            <property name="hibernate.format_sql"
+                      value="true"/>
+            <!--<property name="hibernate.hbm2ddl.auto"
+                      value="update"/>-->
+            <!-- SQL dialect -->
+            <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <!-- The connection is released after each statement execution
+                and reacquired prior to running the next statement.  -->
+            <property name="hibernate.connection.release_mode" value="after_statement"></property>
+            <!-- Connection pool properties -->
+            <property name="hibernate.c3p0.min_size" value="1"/>
+            <property name="hibernate.c3p0.max_size" value="8"/>
+
+            <!-- in seconds:  When an idle connection is removed from the pool
+                 Hibernate default: 0, never expire. -->
+            <property name="hibernate.c3p0.timeout" value="1800"/>
+
+            <!--  Number of prepared statements that will be cached.
+                  Hibernate default: 0 , caching is disable. -->
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+        </properties>
+    </persistence-unit>
+</persistence>

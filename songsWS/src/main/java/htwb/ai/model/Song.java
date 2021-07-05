@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 //import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -47,9 +48,15 @@ public class Song {
     private String album;
     @Column(name = "released")
     private Integer released;
+    @JsonIgnore
     @JsonIgnoreProperties({"songList"})
-    @ManyToMany(mappedBy= "songList",
-            cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @ManyToMany(
+            cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
+    @JoinTable(name = "songlists_songs",
+            joinColumns =
+                    {@JoinColumn(name = "songId", referencedColumnName = "id")},
+            inverseJoinColumns =
+                    {@JoinColumn(name = "songListId", nullable = false, referencedColumnName = "id", updatable=false)})
     private List<SongList> songList = new ArrayList<>();
 
     private Song(Builder builder) {

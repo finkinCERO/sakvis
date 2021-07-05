@@ -51,9 +51,7 @@ public class JwtAuthenticationController {
 
 			return ResponseEntity.ok(new JwtResponse(token));
 		} catch (Exception e){
-			System.out.println("username Controller: "+authenticationRequest.getUsername());
-			System.out.println("username Controller: "+authenticationRequest.getPassword());
-			return ResponseEntity.badRequest().body("something is wrong with user");
+			return ResponseEntity.badRequest().body(new File("src/main/resources/songs.json").getAbsolutePath());
 		}
 	}
 

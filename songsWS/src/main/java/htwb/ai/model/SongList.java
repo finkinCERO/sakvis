@@ -49,7 +49,7 @@ public class SongList  {
 	@ManyToOne(fetch= FetchType.LAZY, cascade= {CascadeType.PERSIST}) //was empty
 	@JoinColumn(name="owner")
 	private Users owner;
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})	//WAS EAGER, WAS CASCADEtYPE.MERGE
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})	//WAS EAGER, WAS CASCADEtYPE.MERGE
 	@JoinTable(name = "songlists_songs",
 			joinColumns =
 					{@JoinColumn(name = "songListId", referencedColumnName = "id")},

@@ -63,7 +63,7 @@ public class SpringBootHelloWorldApplication implements CommandLineRunner {
             String path = resource.getPath();
             /*String[] splitted = path.split("sakvis");
             if (!resource.getAbsolutePath().contains("songsWS")) path = splitted[0] + "sakvis/songsWS" + splitted[1];*/
-            List<Song> songs = readJSONToSongs("/app/"+path);
+            List<Song> songs = readJSONToSongs(path);
 
             List<SongList> sLists = new ArrayList<>();
 

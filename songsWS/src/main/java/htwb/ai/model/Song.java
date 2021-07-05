@@ -38,7 +38,7 @@ public class Song {
     }
     @Id
     @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "title", length = 100, nullable = false)
     private String title;

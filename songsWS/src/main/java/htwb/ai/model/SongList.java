@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class SongList  {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(nullable =false, name="id",unique=true)
 	private Integer id;
 	@Column(length=50, nullable = false)

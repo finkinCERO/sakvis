@@ -20,6 +20,8 @@ import htwb.ai.model.JwtResponse;
 import htwb.ai.model.UserDTO;
 import htwb.ai.service.JwtUserDetailsService;
 
+import java.io.File;
+
 
 @RestController
 @RequestMapping(value = "songsWS-sakvis/rest")

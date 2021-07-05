@@ -59,7 +59,7 @@ public class SpringBootHelloWorldApplication implements CommandLineRunner {
             user1.setPassword(web.passwordEncoder().encode(user1.getPassword()));
             Users user2 = new Users(AppConstants.USER_2, AppConstants.DEFAULT_PASSWORD, "Elena", "Schuler");
             user2.setPassword(web.passwordEncoder().encode(user2.getPassword()));
-            File resource = new File("src/main/resources/songs.json");
+            File resource = new File("songs.json");
             String path = resource.getPath();
             /*String[] splitted = path.split("sakvis");
             if (!resource.getAbsolutePath().contains("songsWS")) path = splitted[0] + "sakvis/songsWS" + splitted[1];*/

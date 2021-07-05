@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class SongList  {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(nullable =false, name="id",unique=true)
 	private Integer id;
 	@Column(length=50, nullable = false)
@@ -49,7 +49,7 @@ public class SongList  {
 	@ManyToOne(fetch= FetchType.LAZY, cascade= {CascadeType.PERSIST}) //was empty
 	@JoinColumn(name="owner")
 	private Users owner;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})	//WAS EAGER, WAS CASCADEtYPE.MERGE
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})	//WAS EAGER, WAS CASCADEtYPE.MERGE
 	@JoinTable(name = "songlists_songs",
 			joinColumns =
 					{@JoinColumn(name = "songListId", referencedColumnName = "id")},
